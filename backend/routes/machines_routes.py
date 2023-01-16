@@ -18,10 +18,10 @@ def add_machine():
 def delete_machine():
     args = request.args
     mysqlquery = '''delete from machines where id = %s'''
-    return value_query(mysqlquery, (args.get('id')))
+    return value_query(mysqlquery, (args.get('machine_id')))
 
 @machine.route("/update-machine", methods=['POST'])
 def update_machine():
     args = request.args
     mysqlquery = '''update machines set handle = %s, location = %s, status = %s where id = %s'''
-    return value_query(mysqlquery, (args.get("handle"), args.get("location"), args.get("status"), args.get("id")))
+    return value_query(mysqlquery, (args.get("handle"), args.get("location"), args.get("status"), args.get("machine_id")))

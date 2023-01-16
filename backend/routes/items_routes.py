@@ -12,16 +12,16 @@ def list_all():
 def add_item():
     args = request.args
     mysqlquery = '''insert into items(name) values(%s)'''
-    return value_query(mysqlquery, (args.get('name'),))
+    return value_query(mysqlquery, (args.get('item_name'),))
 
 @item.route("/remove-item", methods=['POST'])
 def remove_item():
     args = request.args
     mysqlquery = '''delete from items where id = %s'''
-    return value_query(mysqlquery, (args.get('id')))
+    return value_query(mysqlquery, (args.get('item_id')))
 
 @item.route("/update-item", methods=['POST'])
 def update_item():
     args = request.args
     mysqlquery = '''update items set name = %s where id = %s'''
-    return value_query(mysqlquery, (args.get('name'), args.get('id')))
+    return value_query(mysqlquery, (args.get('item_name'), args.get('item_id')))
