@@ -13,8 +13,10 @@ def create_app():
     app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
     with app.app_context():
-        from routes.routes import api
-        app.register_blueprint(api)
+        from routes.machines_routes import machine
+        from routes.items_routes import item
+        app.register_blueprint(machine)
+        app.register_blueprint(item)
 
     return app
 

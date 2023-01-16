@@ -1,17 +1,15 @@
-from flask import current_app as app, session, redirect
 from flask import Blueprint, jsonify, request
-from flask_mysqldb import MySQL
+from .utils import *
 
-api = Blueprint('api', __name__)
-mysql = MySQL(app)
+machine = Blueprint('machine', __name__)
 
 # sanity check route
-@api.route('/ping', methods=['GET'])
+@machine.route('/ping', methods=['GET'])
 def ping_pong():
     return jsonify('pong!')
 
-@api.route('/listall', methods=['GET'])
-def check():
+@machine.route('/list-all-machines', methods=['GET'])
+def list_all():
     with mysql.connection.cursor() as cur:
         mysqlquery = '''select * from machines'''
         cur.execute(mysqlquery)
@@ -19,7 +17,7 @@ def check():
         print(results)
         return jsonify(results)
 
-@api.route('/add_machine', methods=['POST'])
+@machine.route('/add-machine', methods=['POST'])
 def add_machine():
     with mysql.connection.cursor() as cur:
         try:
@@ -32,7 +30,7 @@ def add_machine():
             print(e)
             return jsonify("Failed: {{e}}")
 
-@api.route("/delete_machine", methods=['POST'])
+@machine.route("/delete-machine", methods=['POST'])
 def delete_machine():
     with mysql.connection.cursor() as cur:
         try:
@@ -44,7 +42,7 @@ def delete_machine():
         except Exception as e:
             return "Failed: {{e}}"
 
-@api.route("/update_machine", methods=['POST'])
+@machine.route("/update-machine", methods=['POST'])
 def update_machine():
     with mysql.connection.cursor() as cur:
         try:
