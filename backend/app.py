@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_mysqldb import MySQL
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -36,36 +36,38 @@ def check():
         print(results)
         return jsonify(results)
 
-@app.route("/add_machine/<handle>/<location>", methods=['POST'])
-@app.route('/add_machine/<handle>/<location>/<status>', methods=['POST'])
-def add_machine(handle: str, location: str, status: int = 0):
+@app.route('/add_machine', methods=['POST'])
+def add_machine():
     with mysql.connection.cursor() as cur:
         try:
+            args = request.args
             mysqlquery = '''insert into machines(handle, location, status) values (%s, %s, %s)'''
-            cur.execute(mysqlquery, (handle, location, status))
+            cur.execute(mysqlquery, (args.get("handle"), args.get("location"), args.get("status")))
             cur.connection.commit()
             return jsonify("Success!")
         except Exception as e:
             print(e)
             return jsonify("Failed: {{e}}")
 
-@app.route("/delete_machine/<id>", methods=['POST'])
-def delete_machine(id: int):
+@app.route("/delete_machine", methods=['POST'])
+def delete_machine():
     with mysql.connection.cursor() as cur:
         try:
+            args = request.args
             mysqlquery = '''delete from machines where id = %s'''
-            cur.execute(mysqlquery, id)
+            cur.execute(mysqlquery, args.get('id'))
             cur.connection.commit()
             return "Success!"
         except Exception as e:
             return "Failed: {{e}}"
 
-@app.route("/update_machine/<id>/<handle>/<location>/<status>", methods=['POST'])
-def update_machine(id: int, handle: str, location: str, status: int = 0):
+@app.route("/update_machine", methods=['POST'])
+def update_machine():
     with mysql.connection.cursor() as cur:
         try:
+            args = request.args
             mysqlquery = '''update machines set handle = %s, location = %s, status = %s where id = %s'''
-            cur.execute(mysqlquery, (handle, location, status, id))
+            cur.execute(mysqlquery, (args.get("handle"), args.get("location"), args.get("status"), args.get("id")))
             cur.connection.commit()
             return "Success!"
         except Exception as e:
