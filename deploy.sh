@@ -36,28 +36,28 @@ if [ $1 == "doctor" ]; then
         echo "[X] npm"
     else
         echo "[/] npm"
-        let "COUNT++"
+        ((COUNT++))
     fi
     if ! command -v tmux &> /dev/null
     then
         echo "[X] tmux"
     else
         echo "[/] tmux"
-        let "COUNT++"
+        ((COUNT++))
     fi
     if ! command -v python3 &> /dev/null
     then
         echo "[X] python3"
     else
         echo "[/] python3"
-        let "COUNT++"
+        ((COUNT++))
     fi
     if ! command -v poetry &> /dev/null
     then
         echo "[X] poetry"
     else
         echo "[/] poetry"
-        let "COUNT++"
+        ((COUNT++))
     fi
     if [ $COUNT == 4 ];
     then
