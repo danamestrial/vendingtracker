@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from .utils import *
 
 stock = Blueprint('stock', __name__)

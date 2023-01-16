@@ -1,12 +1,7 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from .utils import *
 
 machine = Blueprint('machine', __name__)
-
-# sanity check route
-@machine.route('/ping', methods=['GET'])
-def ping_pong():
-    return jsonify('pong!')
 
 @machine.route('/list-all-machines', methods=['GET'])
 def list_all():
