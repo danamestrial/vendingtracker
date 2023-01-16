@@ -3,8 +3,8 @@ from flask_mysqldb import MySQL
 
 mysql = MySQL(app)
 
-def status(s: bool):
-    return dict({'status': s})
+def status(b: bool, s: str = ""):
+    return dict({'status': b, 'message': s})
 
 def select_query(query: str, values: tuple = ()):
     try:
@@ -12,8 +12,8 @@ def select_query(query: str, values: tuple = ()):
             cur.execute(query, values)
             results = cur.fetchall()
             return jsonify(results)
-    except:
-        return status(False)
+    except Exception as e:
+        return status(False, e)
 
 def value_query(query: str, values: tuple = ()):
     try:
@@ -21,5 +21,5 @@ def value_query(query: str, values: tuple = ()):
             cur.execute(query, values)
             cur.connection.commit()
         return status(True)
-    except:
-        return status(False)
+    except Exception as e:
+        return status(False, e)
