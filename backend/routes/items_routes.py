@@ -14,13 +14,13 @@ def add_item():
     mysqlquery = '''insert into items(name) values(%s)'''
     return value_query(mysqlquery, (args.get('item_name'),))
 
-@item.route("/remove-item", methods=['POST'])
+@item.route("/remove-item", methods=['DELETE'])
 def remove_item():
     args = request.args
     mysqlquery = '''delete from items where id = %s'''
     return value_query(mysqlquery, (args.get('item_id')))
 
-@item.route("/update-item", methods=['POST'])
+@item.route("/update-item", methods=['PUSH'])
 def update_item():
     args = request.args
     mysqlquery = '''update items set name = %s where id = %s'''

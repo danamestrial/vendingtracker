@@ -3,7 +3,7 @@ from .utils import *
 
 stock = Blueprint('stock', __name__)
 
-@stock.route("/list-stock", methods=['POST'])
+@stock.route("/list-stock", methods=['GET'])
 def list_all_stocks():
     mysqlquery = '''
     select item_id, name as "item_name", quantity
@@ -17,13 +17,13 @@ def add_stock():
     mysqlquery = '''insert into stocks(machine_id, item_id, quantity) values(%s, %s, %s)'''
     return value_query(mysqlquery, (args.get('machine_id'), args.get('item_id'), args.get('quantity')))
 
-@stock.route("/remove-stock", methods=['POST'])
+@stock.route("/remove-stock", methods=['DELETE'])
 def remove_stock():
     args = request.args
     mysqlquery = '''delete from stocks where machine_id = %s and item_id = %s'''
     return value_query(mysqlquery, (args.get('machine_id'), args.get('item_id')))
 
-@stock.route("/update-stock", methods=['POST'])
+@stock.route("/update-stock", methods=['PUSH'])
 def update_stock():
     args = request.args
     mysqlquery = '''update stocks set quantity = %s where machine_id = %s and item_id = %s'''

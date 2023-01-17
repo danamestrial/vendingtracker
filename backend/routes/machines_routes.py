@@ -14,13 +14,13 @@ def add_machine():
     mysqlquery = '''insert into machines(handle, location, status) values (%s, %s, %s)'''
     return value_query(mysqlquery, (args.get("handle"), args.get("location"), args.get("status")))
 
-@machine.route("/delete-machine", methods=['POST'])
+@machine.route("/delete-machine", methods=['DELETE'])
 def delete_machine():
     args = request.args
     mysqlquery = '''delete from machines where id = %s'''
     return value_query(mysqlquery, (args.get('machine_id')))
 
-@machine.route("/update-machine", methods=['POST'])
+@machine.route("/update-machine", methods=['PUSH'])
 def update_machine():
     args = request.args
     mysqlquery = '''update machines set handle = %s, location = %s, status = %s where id = %s'''
