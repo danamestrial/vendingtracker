@@ -13,14 +13,14 @@ A ICCS372 Homework
 >### Database (MySql on Docker)
 <mark>Required:</mark> docker
 
->### Deploy Script
+>### Run Script
 <mark>Required:</mark> npm, python3, poetry, tmux
 
 ## Run using script
-`chmod +x ./deploy.sh` \
-`./deploy.sh [ backend | frontend | both | stop | doctor ]`
+`chmod +x ./run.sh` \
+`./run.sh [ backend | frontend | both | stop | doctor ]`
 
-If you are not sure which packages are already installed run `./deploy.sh doctor`
+If you are not sure which packages are already installed run `./run.sh doctor`
 
 ## Running it manually
 >### Frontend

@@ -2,7 +2,7 @@
 
 # If no args, return usage
 if [ $# -lt 1 ]; then
-	echo "Usage: ./deploy.sh [frontend | backend | both | stop | doctor]"
+	echo "Usage: ./run.sh [frontend | backend | both | stop | doctor]"
 	exit
 fi
 
