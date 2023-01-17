@@ -20,7 +20,7 @@ def remove_item():
     mysqlquery = '''delete from items where id = %s'''
     return value_query(mysqlquery, (args.get('item_id')))
 
-@item.route("/update-item", methods=['PUSH'])
+@item.route("/update-item", methods=['PUT'])
 def update_item():
     args = request.args
     mysqlquery = '''update items set name = %s where id = %s'''
