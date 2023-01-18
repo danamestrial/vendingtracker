@@ -3,6 +3,13 @@ A ICCS372 Homework
 
 ----
 
+### Homework Checklist
+
+- [x] Should be able to manage (create edit delete) vending machines (name, location ,etc)
+- [x] There are multiple products coke, taro, pringle etc
+- [x] There is a a stock for each vending machine (api to crud)
+- [x] Listing for vending machine stock products etc
+
 ## Run Requirement
 >### Frontend (Vue)
 <mark>Required:</mark> npm
