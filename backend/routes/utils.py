@@ -11,7 +11,7 @@ def select_query(query: str, values: tuple = ()):
         with mysql.connection.cursor() as cur:
             cur.execute(query, values)
             results = cur.fetchall()
-            return jsonify(status(True, results))
+            return status(True, results)
     except Exception as e:
         return status(False, str(e))
 
