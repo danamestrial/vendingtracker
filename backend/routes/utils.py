@@ -11,9 +11,9 @@ def select_query(query: str, values: tuple = ()):
         with mysql.connection.cursor() as cur:
             cur.execute(query, values)
             results = cur.fetchall()
-            return jsonify(results)
+            return jsonify(status(True, results))
     except Exception as e:
-        return status(False, e)
+        return status(False, str(e))
 
 def value_query(query: str, values: tuple = ()):
     try:
@@ -22,4 +22,4 @@ def value_query(query: str, values: tuple = ()):
             cur.connection.commit()
         return status(True)
     except Exception as e:
-        return status(False, e)
+        return status(False, str(e))
