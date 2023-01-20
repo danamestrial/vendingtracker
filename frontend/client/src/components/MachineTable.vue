@@ -31,10 +31,10 @@ export default {
   },
   methods: {
     getList() {
-      const path = 'http://127.0.0.1:5000/listall';
+      const path = 'http://127.0.0.1:5000/machine/list-all';
       axios.get(path)
         .then((res) => {
-          this.list = res.data;
+          this.list = res.data.message;
         })
         .catch((error) => {
           // eslint-disable-next-line
