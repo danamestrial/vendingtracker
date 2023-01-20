@@ -17,7 +17,7 @@ def add_stock():
     mysqlquery = '''insert into stocks(machine_id, item_id, quantity) values(%s, %s, %s)'''
     return value_query(mysqlquery, (args.get('machine_id'), args.get('item_id'), args.get('quantity')))
 
-@stock.route("/remove", methods=['DELETE'])
+@stock.route("/delete", methods=['DELETE'])
 def remove_stock():
     args = request.args
     mysqlquery = '''delete from stocks where machine_id = %s and item_id = %s'''

@@ -14,7 +14,7 @@ def add_item():
     mysqlquery = '''insert into items(name) values(%s)'''
     return value_query(mysqlquery, (args.get('item_name'),))
 
-@item.route("/remove", methods=['DELETE'])
+@item.route("/delete", methods=['DELETE'])
 def remove_item():
     args = request.args
     mysqlquery = '''delete from items where id = %s'''
