@@ -23,5 +23,9 @@ def remove_item():
 @item.route("/update-item", methods=['PUT'])
 def update_item():
     args = request.args
-    mysqlquery = '''update items set name = %s where id = %s'''
+    mysqlquery = '''
+    update items set
+    name = ifnull(%s, name)
+    where id = %s
+    '''
     return value_query(mysqlquery, (args.get('item_name'), args.get('item_id')))

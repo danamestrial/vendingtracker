@@ -26,5 +26,8 @@ def remove_stock():
 @stock.route("/update-stock", methods=['PUT'])
 def update_stock():
     args = request.args
-    mysqlquery = '''update stocks set quantity = %s where machine_id = %s and item_id = %s'''
+    mysqlquery = '''
+    update stocks set
+    quantity = ifnull(%s, quantity)
+    where machine_id = %s and item_id = %s'''
     return value_query(mysqlquery, (args.get('quantity'), args.get('machine_id'), args.get('item_id')))
