@@ -53,7 +53,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 -------
 
 ## **Machine Methods**
-### **GET** /machine/list-all
+### ***GET*** /machine/list-all
 *no arguments required*
 ### Example Response
 ```json
@@ -85,7 +85,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 ```
 <br></br>
 
-### **POST** /machine/add
+### ***POST*** /machine/add
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | handle<br> *required* | varchar  | Assign a name to the vending machine       |
@@ -94,14 +94,14 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 
 <br></br>
 
-### **DELETE** /machine/delete
+### ***DELETE*** /machine/delete
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | machine_id<br> *required* | int  | Delete the machine using it's unique id |
 
 <br></br>
 
-### **PATCH** /machine/update
+### ***PATCH*** /machine/update
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | machine_id <br> *required* | int | Update a machine's information given the machine's unique id
@@ -114,7 +114,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 --------------
 
 ## **Item Methods**
-### **GET** /item/list-all
+### ***GET*** /item/list-all
 *no arguments required*
 ### Example Response
 ```json
@@ -134,21 +134,21 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 ```
 <br></br>
 
-### **POST** /item/add
+### ***POST*** /item/add
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | handle<br> *required* | varchar  | Assign a name to the item       |
 
 <br></br>
 
-### **DELETE** /item/delete
+### ***DELETE*** /item/delete
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | item_id<br> *required* | int  | Delete the item using it's unique id |
 
 <br></br>
 
-### **PATCH** /item/update
+### ***PATCH*** /item/update
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | item_id <br> *required* | int | Update a item's information given the item's unique id
@@ -160,7 +160,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 
 ## **Stock Methods**
 
-### **GET** /stock/list
+### ***GET*** /stock/list
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | machine_id<br> *required* | int  | Use machine_id to retrieve machine's stock
@@ -185,7 +185,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 ```
 <br></br>
 
-### **POST** /stock/add
+### ***POST*** /stock/add
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | machine_id<br> *required* | int | Machine's id to add stock to |
@@ -194,7 +194,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 
 <br></br>
 
-### **DELETE** /stock/delete
+### ***DELETE*** /stock/delete
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | machine_id<br> *required* | int | The machine's unique id |
@@ -202,7 +202,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 
 <br></br>
 
-### **PATCH** /stock/update
+### ***PATCH*** /stock/update
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | machine_id<br> *required* | int | The machine's unique id |
