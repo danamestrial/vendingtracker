@@ -9,17 +9,17 @@
     - [**GET** /machine/list-all](#get-machinelist-all)
     - [**POST** /machine/add](#post-machineadd)
     - [**DELETE** /machine/delete](#delete-machinedelete)
-    - [**PUT** /machine/update](#put-machineupdate)
+    - [**PATCH** /machine/update](#patch-machineupdate)
   - [**Item Methods**](#item-methods)
     - [**GET** /item/list-all](#get-itemlist-all)
     - [**POST** /item/add](#post-itemadd)
     - [**DELETE** /item/delete](#delete-itemdelete)
-    - [**PUT** /item/update](#put-itemupdate)
+    - [**PATCH** /item/update](#patch-itemupdate)
   - [**Stock Methods**](#stock-methods)
     - [**GET** /stock/list](#get-stocklist)
     - [**POST** /stock/add](#post-stockadd)
     - [**DELETE** /stock/delete](#delete-stockdelete)
-    - [**PUT** /stock/update](#put-stockupdate)
+    - [**PATCH** /stock/update](#patch-stockupdate)
 
 
 # Http Verbs
@@ -27,7 +27,7 @@
 | --- | ----------- |
 | GET | Retrieve a resource |
 | POST | To create a new resource |
-| PUT | To update an existing resource |
+| PATCH | To update an existing resource |
 | DELETE | To delete an existing resource |
 
 # Resources
@@ -101,7 +101,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 
 <br></br>
 
-### **PUT** /machine/update
+### **PATCH** /machine/update
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | machine_id <br> *required* | int | Update a machine's information given the machine's unique id
@@ -148,7 +148,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 
 <br></br>
 
-### **PUT** /item/update
+### **PATCH** /item/update
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | item_id <br> *required* | int | Update a item's information given the item's unique id
@@ -202,7 +202,7 @@ All api will **always** return with two things 'status' : bool AND 'message' : {
 
 <br></br>
 
-### **PUT** /stock/update
+### **PATCH** /stock/update
 | Arguments   |  Type  | Description |
 | ----------- | --------- | ----------- |
 | machine_id<br> *required* | int | The machine's unique id |
