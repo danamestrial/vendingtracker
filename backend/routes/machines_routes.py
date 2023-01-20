@@ -23,12 +23,15 @@ def delete_machine():
 @machine.route("/update-machine", methods=['PUT'])
 def update_machine():
     args = request.args
-    machine_id = args.get('machine_id')
-    machine_list = select_query(f'select * from machines where id = {machine_id}')
-    old_info = machine_list.get('message')[0]
-    mysqlquery = '''update machines set handle = %s, location = %s, status = %s where id = %s'''
+    mysqlquery = '''
+    update machines set
+    handle = ifnull(%s, handle),
+    location = ifnull(%s, location),
+    status = ifnull(%s, status)
+    where id = %s
+    '''
     return value_query(mysqlquery, \
-        (args.get("handle", old_info.get('handle')), \
-        args.get("location", old_info.get('location')), \
-        args.get("status", old_info.get('status')), \
-        machine_id))
+        (args.get("handle"), \
+        args.get("location"), \
+        args.get("status"), \
+        args.get("machine_id")))
