@@ -21,7 +21,7 @@ def add_item():
 def remove_item():
     args = request.args
     mysqlquery = '''delete from items where id = %s'''
-    return value_query(mysqlquery, (args.get('item_id')))
+    return value_query(mysqlquery, (args.get('item_id'),))
 
 
 @item.route("/update", methods=['PATCH'])

@@ -21,7 +21,7 @@ def add_machine():
 def delete_machine():
     args = request.args
     mysqlquery = '''delete from machines where id = %s'''
-    return value_query(mysqlquery, (args.get('machine_id')))
+    return value_query(mysqlquery, (args.get('machine_id'),))
 
 
 @machine.route("/update", methods=['PATCH'])

@@ -10,7 +10,7 @@ def list_all_stocks():
     select item_id, name as "item_name", quantity
     from stocks, items
     where item_id = items.id AND machine_id = %s'''
-    return select_query(mysqlquery, (request.args.get('machine_id')))
+    return select_query(mysqlquery, (request.args.get('machine_id'),))
 
 
 @stock.route("/add", methods=['POST'])
