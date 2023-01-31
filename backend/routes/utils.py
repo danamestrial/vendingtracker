@@ -3,8 +3,10 @@ from flask_mysqldb import MySQL
 
 mysql = MySQL(app)
 
+
 def status(b: bool, s: str = ""):
     return dict({'status': b, 'message': s})
+
 
 def select_query(query: str, values: tuple = ()):
     try:
@@ -14,6 +16,7 @@ def select_query(query: str, values: tuple = ()):
             return status(True, results)
     except Exception as e:
         return status(False, str(e))
+
 
 def value_query(query: str, values: tuple = ()):
     try:
