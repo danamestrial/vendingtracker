@@ -1,6 +1,5 @@
 from flask import Flask
 from flask.testing import FlaskClient
-
 from routes.utils import select_query, status, value_query
 
 

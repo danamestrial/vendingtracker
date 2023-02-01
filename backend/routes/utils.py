@@ -1,9 +1,8 @@
 from typing import Dict, Union
 
+from app import mysql
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
-
-from app import mysql
 
 
 def status(b: bool, s: Union[str, list] = "") -> Dict[str, Union[str, list, bool]]:
