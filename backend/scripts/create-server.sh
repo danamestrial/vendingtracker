@@ -11,6 +11,6 @@ while ! docker exec -i mysql-db mysql --user=root --password=$1 -e "status" &> /
     echo "Waiting for database to start..."
     sleep 2
 done
-docker exec -i mysql-db mysql -u root -p$1 < create-database-with-data.sql
+docker exec -i mysql-db mysql -u root -p$1 < ./backend/scripts/create-database-with-data.sql
 
 echo "Server created sucessfully"
