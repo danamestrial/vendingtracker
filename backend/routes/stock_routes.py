@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+
 from .utils import *
 
 stock = Blueprint('stock', __name__, url_prefix='/stock')

@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+
 from .utils import *
 
 machine = Blueprint('machine', __name__, url_prefix='/machine')
