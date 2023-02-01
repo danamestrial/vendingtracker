@@ -17,17 +17,10 @@ def create_app(env_path: str = None) -> Flask:
     dotenv_path = Path(env_path if env_path else ".env")
     load_dotenv(override=True, dotenv_path=dotenv_path)
 
-    # print(os.environ)
-
     app.config["MYSQL_DATABASE_USER"] = os.getenv("USERNAME")
     app.config["MYSQL_DATABASE_PASSWORD"] = os.getenv("PASSWORD")
     app.config["MYSQL_DATABASE_DB"] = os.getenv("DB")
     app.config["MYSQL_DATABASE_HOST"] = os.getenv("HOST")
-
-    # app.config['MYSQL_DATABASE_USER'] = 'root'
-    # app.config['MYSQL_DATABASE_PASSWORD'] = 'mypassword'
-    # app.config['MYSQL_DATABASE_DB'] = 'vending'
-    # app.config['MYSQL_DATABASE_HOST'] = '127.0.0.1'
 
     mysql.init_app(app)
 
