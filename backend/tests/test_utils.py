@@ -23,6 +23,10 @@ def test_select_query(client: FlaskClient, app: Flask) -> None:
         query_result = select_query("SELECT * FROM items WHERE id = %s", (1,))
         assert query_result["status"]
 
+    with app.app_context():
+        query_result = select_query("SELECT * FROM items WHERE id = %s", ())
+        assert not query_result["status"]
+
 
 def test_value_query(client: FlaskClient, app: Flask) -> None:
     """Test value_query method."""
