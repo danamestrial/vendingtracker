@@ -1,3 +1,6 @@
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=danamestrial_vendingtracker&metric=coverage)](https://sonarcloud.io/summary/new_code?id=danamestrial_vendingtracker)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=danamestrial_vendingtracker&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=danamestrial_vendingtracker)
+
 # Vending Tracker
 A ICCS372 Homework
 
