@@ -8,7 +8,7 @@ from flask.testing import FlaskClient
 def app() -> Flask:
     """Create new app instance everytime for each test."""
     # Reads .env from backend/
-    return create_app(env_path="../.env")
+    return create_app(env_path="./backend/.env")
 
 
 @pytest.fixture
