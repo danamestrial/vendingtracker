@@ -12,7 +12,7 @@ mysql = MySQL()
 def create_app(env_path: str = None) -> Flask:
     """To Create a new instance of App."""
     app = Flask(__name__)
-    CORS(app, resources={r"/*": {"origins": "*"}})
+    CORS(app, resources={r"/*": {"origins": "*", "send_wildcard": "False"}})
 
     dotenv_path = Path(env_path if env_path else ".env")
     load_dotenv(override=True, dotenv_path=dotenv_path)
