@@ -44,4 +44,3 @@ If you are not sure which packages are already installed run `./run.sh doctor`
 `cd backend/scripts`\
 `chmod +x ./create-server.sh`\
 `./create-server.sh {password}`
-

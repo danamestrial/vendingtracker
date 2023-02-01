@@ -1,13 +1,20 @@
+from typing import Dict, Union
+
+from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 
 from app import mysql
 
 
-def status(b: bool, s: str = ""):
-    return dict({'status': b, 'message': s})
+def status(b: bool, s: Union[str, list] = "") -> Dict[str, Union[str, list, bool]]:
+    """To get a constant responses every query."""
+    return dict({"status": b, "message": s})
 
 
-def select_query(query: str, values: tuple = (), mysql_instance=mysql):
+def select_query(
+    query: str, values: tuple = (), mysql_instance: MySQL = mysql
+) -> status:
+    """To execute mysql query for select command."""
     try:
         with mysql_instance.get_db().cursor(DictCursor) as cur:
             cur.execute(query, values)
@@ -17,7 +24,10 @@ def select_query(query: str, values: tuple = (), mysql_instance=mysql):
         return status(False, str(e))
 
 
-def value_query(query: str, values: tuple = (), mysql_instance=mysql):
+def value_query(
+    query: str, values: tuple = (), mysql_instance: MySQL = mysql
+) -> status:
+    """To execute mysql query for command that doesn't return."""
     try:
         with mysql_instance.get_db().cursor(DictCursor) as cur:
             cur.execute(query, values)
