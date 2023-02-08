@@ -69,7 +69,14 @@ if [ $1 == "doctor" ]; then
         echo "[/] poetry"
         ((COUNT++))
     fi
-    if [ $COUNT == 4 ];
+    if ! command -v docker &> /dev/null
+    then
+        echo "[X] docker"
+    else
+        echo "[/] docker"
+        ((COUNT++))
+    fi
+    if [ $COUNT == 5 ];
     then
         echo "Everything is set and ready to go!"
     else
