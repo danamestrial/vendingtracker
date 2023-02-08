@@ -14,7 +14,7 @@ def create_app(env_path: str = None) -> Flask:
     app = Flask(__name__)
     CORS(app, resources={r"/*": {"origins": "*", "send_wildcard": "False"}})
 
-    dotenv_path = Path(env_path if env_path else ".env")
+    dotenv_path = Path(env_path if env_path else "backend/.env")
     load_dotenv(override=True, dotenv_path=dotenv_path)
 
     app.config["MYSQL_DATABASE_USER"] = os.getenv("USERNAME")
@@ -36,7 +36,6 @@ def create_app(env_path: str = None) -> Flask:
     return app
 
 
-current_app = create_app()
-
 if __name__ == "__main__":
+    current_app = create_app()
     current_app.run(debug=True)
