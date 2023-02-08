@@ -22,9 +22,6 @@ def create_app(env_path: str = None) -> Flask:
     app.config["MYSQL_DATABASE_DB"] = os.getenv("DB")
     app.config["MYSQL_DATABASE_HOST"] = os.getenv("HOST")
 
-    print(os.getenv("USERNAME"), os.getenv("PASSWORD"))
-    print(app.instance_path)
-
     mysql.init_app(app)
 
     with app.app_context():
