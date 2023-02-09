@@ -40,3 +40,12 @@ def update_item() -> Dict[str, Union[str, list, bool]]:
     where id = %s
     """
     return value_query(sql_query, (args.get("item_name"), args.get("item_id")))
+
+
+@item.route("/records", methods=["GET"])
+def get_product_time_stamp() -> Dict[str, Union[str, list, bool]]:
+    """Endpoint to get logs of changes to items."""
+    product_id = request.args.get("product_id")
+    query = """ SELECT * FROM purchase WHERE item_id = %s"""
+    return select_query(query, (product_id,))
+

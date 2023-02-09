@@ -52,3 +52,11 @@ def update_machine() -> Dict[str, Union[str, list, bool]]:
             args.get("machine_id"),
         ),
     )
+
+
+@machine.route("/records", methods=["GET"])
+def get_machine_time_stamp() -> Dict[str, Union[str, list, bool]]:
+    """Endpoint to get logs of changes to machines."""
+    machine_id = request.args.get("machine_id")
+    query = """ SELECT * FROM purchase WHERE machine_id = %s"""
+    return select_query(query, (machine_id,))

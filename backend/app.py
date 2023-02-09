@@ -27,13 +27,11 @@ def create_app(env_path: str = None) -> Flask:
     with app.app_context():
         from routes.items_routes import item
         from routes.machines_routes import machine
-        from routes.purchase_routes import purchase
         from routes.stock_routes import stock
 
         app.register_blueprint(machine)
         app.register_blueprint(item)
         app.register_blueprint(stock)
-        app.register_blueprint(purchase)
 
     return app
 
