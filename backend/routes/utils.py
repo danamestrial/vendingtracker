@@ -37,9 +37,8 @@ def value_query(
         return status(False, str(e))
 
 
-def snapshot(
-    machine_id: int, product_id: int, quantity: int, mysql_instance: MySQL = mysql
-):
+def snapshot(machine_id: int, product_id: int, quantity: int) -> status:
+    """Take a snapshot for logging."""
     query = """insert into purchase(machine_id, item_id, time_stamp, quantity_changed) values(%s, %s, %s, %s)"""
     values = (machine_id, product_id, datetime.now(), quantity)
     select_query(query, values)
