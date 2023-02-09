@@ -68,7 +68,7 @@ jobs:
 
       - name: Create Env File
         run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
+          echo "${{ secrets.ENV_FILE }}" > backend/.env
 
       - name: Set up Poetry cache
         id: poetry-cache

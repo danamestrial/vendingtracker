@@ -10,7 +10,7 @@ A ICCS372 Homework
 
 - [x] Should be able to manage (create edit delete) vending machines (name, location ,etc)
 - [x] There are multiple products coke, taro, pringle etc
-- [x] There is a a stock for each vending machine (api to crud)
+- [x] There is a stock for each vending machine (api to crud)
 - [x] Listing for vending machine stock products etc
 
 ## Run Requirement
@@ -24,15 +24,30 @@ A ICCS372 Homework
 <mark>Required:</mark> docker
 
 >### Run Script
-<mark>Required:</mark> npm, python3, poetry, tmux
+<mark>Required:</mark> npm, python3, poetry, tmux, docker
 
 ## Run using script
 `chmod +x ./run.sh` \
-`./run.sh [ backend | frontend | both | stop | doctor ]`
+usage: ./run.sh [ backend | frontend | both | server | stop | doctor ]
 
-If you are not sure which packages are already installed run `./run.sh doctor`
+`./run.sh server` -> Create test server (required docker)
 
-## Running it manually
+`./run.sh backend` -> Start backend (run flask app using tmux)
+
+`./run.sh frontend` -> Start frontend (not updated)
+
+`./run.sh both` -> Start both frontend and backend (not updated)
+
+`./run.sh stop` -> Stop backend/frontend (stop all tmux session)
+
+##### If you are not sure which packages are already installed run:
+
+`./run.sh doctor` -> Check which package is installed
+
+## Create Database using run script
+
+
+## Running/Creating manually
 >### Frontend
 `cd frontend/client`\
 `npm install`\

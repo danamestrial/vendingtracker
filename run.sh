@@ -2,7 +2,7 @@
 
 # If no args, return usage
 if [ $# -lt 1 ]; then
-	echo "Usage: ./run.sh [frontend | backend | both | stop | doctor]"
+	echo "Usage: ./run.sh [frontend | backend | both | server | stop | doctor]"
 	exit
 fi
 
@@ -20,8 +20,18 @@ if [ $1 == "backend" ] || [ $1 == "both" ]; then
     tmux new-session -d -s backend
 
     #start backend
-    tmux send-keys -t backend "cd backend" C-m && \
-    tmux send-keys -t backend "poetry install && poetry run python3 app.py" C-m
+    tmux send-keys -t backend "poetry install && poetry run flask --app backend/app run" C-m
+fi
+
+if [ $1 == "server" ]; then
+    echo "Creating test server"
+    echo "note: this is a test server, do not use this for deployment"
+    echo "creating env file"
+    echo "HOST=127.0.0.1
+USERNAME=root
+PASSWORD=mypassword
+DB=vending" > backend/.env
+    ./backend/scripts/create-server.sh mypassword
 fi
 
 if [ $1 == "stop" ]; then
@@ -59,7 +69,14 @@ if [ $1 == "doctor" ]; then
         echo "[/] poetry"
         ((COUNT++))
     fi
-    if [ $COUNT == 4 ];
+    if ! command -v docker &> /dev/null
+    then
+        echo "[X] docker"
+    else
+        echo "[/] docker"
+        ((COUNT++))
+    fi
+    if [ $COUNT == 5 ];
     then
         echo "Everything is set and ready to go!"
     else
