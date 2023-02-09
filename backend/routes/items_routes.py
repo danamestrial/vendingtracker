@@ -10,6 +10,7 @@ item = Blueprint("item", __name__, url_prefix="/item")
 @item.route("/list-all", methods=["GET"])
 def list_all() -> Dict[str, Union[str, list, bool]]:
     """Endpoint method to list out items."""
+    print("si dnaodn fosdnf o")
     sql_query = """select * from items"""
     return select_query(sql_query)
 

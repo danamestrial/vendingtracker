@@ -2,7 +2,7 @@ from typing import Dict, Union
 
 from flask import Blueprint, request
 
-from .utils import select_query, value_query
+from .utils import select_query, snapshot, value_query
 
 stock = Blueprint("stock", __name__, url_prefix="/stock")
 
@@ -45,6 +45,8 @@ def update_stock() -> Dict[str, Union[str, list, bool]]:
     update stocks set
     quantity = ifnull(%s, quantity)
     where machine_id = %s and item_id = %s"""
+
+    snapshot(args.get("machine_id"), args.get("item_id"), args.get("quantity"))
     return value_query(
         sql_query, (args.get("quantity"), args.get("machine_id"), args.get("item_id"))
     )
