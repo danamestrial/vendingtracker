@@ -48,4 +48,3 @@ def get_product_time_stamp() -> Dict[str, Union[str, list, bool]]:
     product_id = request.args.get("product_id")
     query = """ SELECT * FROM purchase WHERE item_id = %s"""
     return select_query(query, (product_id,))
-
