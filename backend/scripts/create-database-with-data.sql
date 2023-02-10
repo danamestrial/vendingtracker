@@ -98,4 +98,22 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+
+create table purchase
+(
+    id               int auto_increment,
+    machine_id       int not null,
+    item_id          int not null,
+    time_stamp       DATETIME not null,
+    quantity_changed int null,
+    constraint id
+        primary key (id),
+    constraint purchase_items_id_fk
+        foreign key (item_id) references items (id),
+    constraint purchase_machines_id_fk
+        foreign key (machine_id) references machines (id)
+);
+
+
+
 -- Dump completed on 2023-01-16 23:30:13
