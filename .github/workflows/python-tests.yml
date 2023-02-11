@@ -16,13 +16,14 @@ jobs:
       # Label used to access the service container
       mysql:
         # Docker Hub image
-        image: mysql
+        image: mysql:5.7
         # Provide the root password for MySQL
         env:
           MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
         # Map port 3306 from the container to port 3306 on the host
         ports:
           - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - uses: actions/checkout@v2
