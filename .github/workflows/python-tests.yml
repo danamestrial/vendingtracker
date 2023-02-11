@@ -11,20 +11,6 @@ jobs:
   lint:
     runs-on: ubuntu-20.04
 
-    # Service containers to run with `container-job`
-    services:
-      # Label used to access the service container
-      mysql:
-        # Docker Hub image
-        image: mysql:5.7
-        # Provide the root password for MySQL
-        env:
-          MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
-        # Map port 3306 from the container to port 3306 on the host
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
       - uses: actions/checkout@v2
 
@@ -56,6 +42,19 @@ jobs:
   test-and-coverage:
     runs-on: ubuntu-20.04
 
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      mysql:
+        # Docker Hub image
+        image: mysql
+        # Provide the root password for MySQL
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
+        # Map port 3306 from the container to port 3306 on the host
+        ports:
+          - 3306:3306
+
     steps:
       - uses: actions/checkout@v2
 
@@ -64,22 +63,21 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      # Install the dockerize tool
-      - name: Install dockerize
-        run: sudo apt-get update && sudo apt-get install -y wget && wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz
-
       - name: Check docker
         run: |
           docker --version && docker ps -a
+
+      - name: Install dockerize
+        run: sudo apt-get update && sudo apt-get install -y wget && wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz
 
       # Wait for the MySQL service to be ready
       - name: Wait for MySQL to start
         run: dockerize -wait tcp://localhost:3306 -timeout 60s
 
-      # Use this step to run your SQL script inside the MySQL service container
-      - name: Execute SQL script
-        run: |
-          mysql -h localhost -u root -p ${{ env.MYSQL_ROOT_PASSWORD }} < backend/scripts/create-database-with-data.sql
+#      # Use this step to run your SQL script inside the MySQL service container
+#      - name: Execute SQL script
+#        run: |
+#          mysql -h localhost -u root -p ${{ env.MYSQL_ROOT_PASSWORD }} < backend/scripts/create-database-with-data.sql
 
 #      - name: Run server script
 #        run: ./backend/scripts/create-server.sh ${{ secrets.PASSWORD }}
