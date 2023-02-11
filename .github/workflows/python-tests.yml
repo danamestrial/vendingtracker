@@ -48,6 +48,7 @@ jobs:
       mysql:
         # Docker Hub image
         image: mysql
+        container_name: mysql-db
         # Provide the root password for MySQL
         env:
           MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
@@ -75,7 +76,7 @@ jobs:
 
       - name: Execute SQL script
         run: |
-          mysql -u root -p${{ env.MYSQL_ROOT_PASSWORD }} < ./backend/scripts/create-database-with-data.sql
+          docker exec -i mysql-db mysql -u root -p${{ env.MYSQL_ROOT_PASSWORD }} < ./backend/scripts/create-database-with-data.sql
 
 #      - name: Run server script
 #        run: ./backend/scripts/create-server.sh ${{ secrets.PASSWORD }}
