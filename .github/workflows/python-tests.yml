@@ -45,10 +45,9 @@ jobs:
     # Service containers to run with `container-job`
     services:
       # Label used to access the service container
-      mysql:
+      mysql-db:
         # Docker Hub image
         image: mysql
-        container_name: mysql-db
         # Provide the root password for MySQL
         env:
           MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
