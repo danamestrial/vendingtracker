@@ -75,7 +75,7 @@ jobs:
 
       - name: Execute SQL script
         run: |
-          mysql -h localhost -u root -p ${{ env.MYSQL_ROOT_PASSWORD }} < backend/scripts/create-database-with-data.sql
+          mysql -u root -p${{ env.MYSQL_ROOT_PASSWORD }} < ./backend/scripts/create-database-with-data.sql
 
 #      - name: Run server script
 #        run: ./backend/scripts/create-server.sh ${{ secrets.PASSWORD }}
