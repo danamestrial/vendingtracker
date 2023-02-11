@@ -45,7 +45,7 @@ jobs:
     # Service containers to run with `container-job`
     services:
       # Label used to access the service container
-      mysql-db:
+      mysql:
         # Docker Hub image
         image: mysql
         # Provide the root password for MySQL
@@ -54,6 +54,7 @@ jobs:
         # Map port 3306 from the container to port 3306 on the host
         ports:
           - 3306:3306
+        options: --name mysql-db
 
     steps:
       - uses: actions/checkout@v2
@@ -75,7 +76,7 @@ jobs:
 
       - name: Execute SQL script
         run: |
-          mysql -h localhost -P 3306 -u root -p${{ env.MYSQL_ROOT_PASSWORD }} < ./backend/scripts/create-database-with-data.sql
+          docker exec -i mysql-db mysql -u root -p${{ env.MYSQL_ROOT_PASSWORD }} < ./backend/scripts/create-database-with-data.sql
 
 #      - name: Run server script
 #        run: ./backend/scripts/create-server.sh ${{ secrets.PASSWORD }}
