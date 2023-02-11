@@ -63,6 +63,10 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+      # Install the dockerize tool
+      - name: Install dockerize
+        run: sudo apt-get update && sudo apt-get install -y wget && wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz
+
       - name: Check docker
         run: |
           docker --version && docker ps -a
