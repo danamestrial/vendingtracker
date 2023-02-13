@@ -37,3 +37,12 @@ repos:
     hooks:
     - id: isort
 #      args: [--settings-path=backend/tox.ini]
+
+  - repo: local
+    hooks:
+      - id: commit-msg
+        name: commit message should have tag (feat:, fix:)
+        language: pygrep
+        entry: '\A(?![a-zA-Z]+:)'
+        args: [ --multiline ]
+        stages: [ commit-msg ]
